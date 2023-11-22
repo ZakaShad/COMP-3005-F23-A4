@@ -9,11 +9,11 @@ application.use(bodyParser.json());
 const PORT = 1337;
 
 const pool = new Pool({
-  user: 'postgres',
+  user: process.env.DB_USER, //postgres by default
   password: process.env.DB_PASS,
   host: 'localhost',
   port: 5432, // default Postgres port
-  database: 'A4'
+  database: process.env.DB_NAME //A4 for me
 });
 
 application.get("/student", async (req: Request, res: Response) => {
