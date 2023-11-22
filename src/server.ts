@@ -14,11 +14,7 @@ const pool = new Pool({
   database: 'A4'
 });
 
-application.get("/ping", (request: Request, response: Response) => {
-    response.send("Pong");
-});
-
-application.get("/students", async (req: Request, res: Response) => {
+application.get("/student", async (req: Request, res: Response) => {
     try {
         const result = await pool.query('SELECT * FROM students'); //TODO: This should be from FS
         res.json(result.rows);
@@ -37,9 +33,8 @@ application.post("/student", async(req: Request, res: Response) => {
         ('${req.body.first_name}', '${req.body.last_name}', '${req.body.email}', '${req.body.enrollment_date}');
         `
 
-        // console.log(query);
         const result = await pool.query(query);
-        res.json(result.rows);
+        res.json("Successfully added student!");
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error');
@@ -50,34 +45,29 @@ application.post("/student", async(req: Request, res: Response) => {
 application.put("/student", async (req: Request, res: Response) => {
     try {
         const query = `
-        INSERT INTO students(first_name, last_name, email, enrollment_date) 
-        VALUES
-        ('${req.body.first_name}', '${req.body.last_name}', '${req.body.email}', '${req.body.enrollment_date}');
+        UPDATE Students
+        SET email = '${req.query.email}'
+        WHERE student_id = ${req.query.id}
+        ;
         `
 
-        // console.log(query);
         const result = await pool.query(query);
-        res.json(result.rows);
+        res.json("Updated student email");
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error');
     }
-    
-    res.send("Updated student email");
 })
 
 application.delete("/student/:student_id", async (req: Request, res: Response) => {
-    console.log(req.params.student_id);
-
     try {
         const query = `
         DELETE FROM students 
         WHERE student_id = ${req.params.student_id};
         `
 
-        // console.log(query);
         const result = await pool.query(query);
-        res.json(result.rows);
+        res.json("Successfully deleted student!");
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error');
