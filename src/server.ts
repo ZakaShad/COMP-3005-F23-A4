@@ -67,11 +67,12 @@ application.put("/student", async (req: Request, res: Response) => {
 })
 
 application.delete("/student/:student_id", async (req: Request, res: Response) => {
-    
+    console.log(req.params.student_id);
+
     try {
         const query = `
         DELETE FROM students 
-        WHERE student_id = ${req.paams.student_id};
+        WHERE student_id = ${req.params.student_id};
         `
 
         // console.log(query);
