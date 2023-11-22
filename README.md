@@ -1,6 +1,6 @@
 # Summary
-This is a server that listens to the localhost at port 1337. It provides the following API:
-GET /student  -> retrieves all students
+This is a server that listens to the localhost at port 1337. It provides the following API:\n
+GET /student  -> retrieves all students\n
 POST /student -> uses a request body to add a student to the DB. Req body must have the following schema:
     ```
     first_name: String,
