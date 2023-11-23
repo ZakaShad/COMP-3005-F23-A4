@@ -1,9 +1,6 @@
 # Video Walkthrough
 A video of this server's setup, API, and demo can be found here:
-[https://www.youtube.com/watch?v=5Ln5SOyJjYc](https://youtu.be/5Ln5SOyJjYc)
-
-If the above link is broken, try this one:
-https://clipchamp.com/watch/d82DhNLbciC
+https://youtu.be/obTH3NV1uCQ
 
 # Summary
 This is a server that listens to the localhost at port 1337. It provides the following API:
