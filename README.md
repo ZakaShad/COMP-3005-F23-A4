@@ -2,6 +2,8 @@
 A video of this server's setup, API, and demo can be found here:
 https://youtu.be/obTH3NV1uCQ
 
+**Note**: After the video, I enhanced the put request. It now returns a nice error to the client if the client tries to change a student's email to an email that is already linked with another student.
+
 # Summary
 This is a server that listens to the localhost at port 1337. It provides the following API:
 
@@ -21,7 +23,7 @@ DELETE /student/:id   -> Delete student with matching `id`
 I've gone with a server-based approach in this assignment because that's how I plan to do the final project. 
 
 # Pre-Reqs
-You need to have the following tools / packages installed to be able to run this server:
+You need to have the following tools/packages installed to be able to run this server:
 - JS
 - Node-JS
 - PGAdmin and PostgreSQL
