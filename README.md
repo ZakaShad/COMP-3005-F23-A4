@@ -32,7 +32,7 @@ You need to have the following tools/packages installed to be able to run this s
 - Launch PGAdmin
 - Enter the username and password. **COPY / REMEMBER THESE! YOU WILL NEED THEM!**
 - Create a new DB. **REMEMBER THE DB NAME!**
-- Run `create.sql` and then `populate.sql` on the scripts
+- Run `init.sql` in the SQL folder in this repo
 
 # Preparing the server env
 - Run `npm install`
