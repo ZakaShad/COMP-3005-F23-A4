@@ -1,8 +1,9 @@
 # Video Walkthrough
 A video of this server's setup, API, and demo can be found here:
-https://youtu.be/obTH3NV1uCQ
+[https://youtu.be/obTH3NV1uCQ](https://www.youtube.com/watch?v=zPJRuXdqumI)
 
-**Note**: After the video, I enhanced the put request. It now returns a nice error to the client if the client tries to change a student's email to an email that is already linked with another student.
+If the above doesn't work, try:
+[clipchamp link](https://clipchamp.com/watch/qr2xwsUvxUq)
 
 # Summary
 This is a server that listens to the localhost at port 1337. It provides the following API:
