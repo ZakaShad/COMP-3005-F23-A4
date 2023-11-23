@@ -45,3 +45,26 @@ You need to have the following tools/packages installed to be able to run this s
 # Running the server
 - Run `npm run dev`
 - Now, the server should be listning on port 1337. Use tools like Postman or Thunder Client to easily make the requests.
+
+# Function Explanations
+`application.get("/student", async (req: Request, res: Response)` &rarr; Retrieves all students in the DB <br>
+`application.post("/student", async(req: Request, res: Response)` &rarr; Uses the post request body* to add a student to the DB. <br>
+`application.put("/student", async (req: Request, res: Response)` &rarr; Uses the put request URL params** to add edit a student's email. <br>
+`application.delete("/student/:student_id", async (req: Request, res: Response)` &rarr; Deletes the student whose ID matches the one provided in the route. 
+<br>
+<br>
+
+\* The request body needs to be of the following schema:
+```
+first_name: String,
+last_name: String, 
+email: String,
+enrollment_date: String
+```
+<br>
+
+\** The url params need to be of the following schema:
+```
+id: String,
+email: String
+```
