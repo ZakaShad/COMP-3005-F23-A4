@@ -16,9 +16,10 @@ const pool = new Pool({
   database: process.env.DB_NAME //A4 for me
 });
 
+// Retrieves all students
 application.get("/student", async (req: Request, res: Response) => {
     try {
-        const result = await pool.query('SELECT * FROM students'); //TODO: This should be from FS
+        const result = await pool.query('SELECT * FROM students');
         res.json(result.rows);
       } catch (err) {
         console.error(err);
@@ -26,10 +27,11 @@ application.get("/student", async (req: Request, res: Response) => {
       }
 });
 
+// Add a student. Requires a body that must match PostReqBody schema in helpers.
 application.post("/student", async(req: Request, res: Response) => {
     // Enforce that req.body follows the PostReqBody schema in helpers
     try{
-        const reqBody = PostReqBody.check(req.body);
+        const reqBody = PostReqBody.check(req.body); //throws an excpetion if the check fails
 
         try {
             const query = `
@@ -56,9 +58,12 @@ application.post("/student", async(req: Request, res: Response) => {
     }
 });
 
+
+// Edit a current student's email. Requires two URL PARAMS: id and email.
 application.put("/student", async (req: Request, res: Response) => {
     try{
-        const reqQuery = PutReqQuery.check(req.query);
+        const reqQuery = PutReqQuery.check(req.query); //Ensure that query params include id and email, both should be strings
+        // id needs to be numeric
         if(!isNumeric(req.query.id)){
             res.status(400).send(`ID needs to be numeric!`);
             return;
@@ -102,6 +107,7 @@ application.put("/student", async (req: Request, res: Response) => {
     }
 })
 
+// delete the student with the matching student_id
 application.delete("/student/:student_id", async (req: Request, res: Response) => {
     // student_id needs to be numeric
     if(!isNumeric(req.params.student_id)){
