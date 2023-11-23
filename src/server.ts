@@ -38,9 +38,13 @@ application.post("/student", async(req: Request, res: Response) => {
             ('${reqBody.first_name}', '${reqBody.last_name}', '${reqBody.email}', '${reqBody.enrollment_date}');
             `
     
-            const result = await pool.query(query);
+            await pool.query(query);
             res.json("Successfully added student!");
         } catch (err) {
+            if(err.code === '23505'){
+                res.status(400).send(`Another student already has email ${reqBody.email}`);
+                return;
+            }
             console.error(err);
             res.status(500).send('Internal Server Error');
         }
@@ -80,9 +84,13 @@ application.put("/student", async (req: Request, res: Response) => {
             ;
             `
     
-            const result = await pool.query(query);
+            await pool.query(query);
             res.json("Updated student email");
         } catch (err) {
+            if(err.code === '23505'){
+                res.status(400).send(`Another student already has that email!`);
+                return;
+            }
             console.error(err);
             res.status(500).send('Internal Server Error');
         }
@@ -124,5 +132,5 @@ application.delete("/student/:student_id", async (req: Request, res: Response) =
 })
 
 application.listen(PORT, () => {
-    console.log("server running...");
+    console.log(`server running on port ${PORT}...`);
 })
